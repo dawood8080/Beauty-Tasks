@@ -1,0 +1,88 @@
+:root {
+    --main-color: #a0221d;
+    --secondary-color: #e67e21;
+    --white: #fff;
+    --cards-info-font: 600 16px/1.33 Sans-serif;
+    --card-border: 1px solid #8080802f;
+    --main-card-color: #fb1e1f;
+    --secondary-card-color: #168000;
+    --button-box-shadow: 1px 1px #72676756;
+}
+
+* {
+    margin: 0;
+}
+
+.header {
+    background: linear-gradient(to left, var(--main-color), var(--secondary-color));
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.user-name {
+    font: var(--cards-info-font);
+    margin-bottom: 4px;
+}
+
+.count-cards,
+.selected-colors {
+    font: var(--cards-info-font);
+    margin-right: 5px;
+}
+
+.cardsContainer {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+    justify-content: stretch;
+    margin: 18px;
+    margin-top: 111px;
+}
+
+.card {
+    border: var(--card-border);
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    transition: .35s linear;
+}
+
+.color-image {
+    height: 450px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    padding-left: 20px;
+}
+
+.card-title {
+    margin: 20px 0 10px 0;
+}
+
+.button {
+    background-color: var(--main-card-color);
+    border: none;
+    box-shadow: var(--button-box-shadow);
+    color: var(--white);
+    cursor: pointer;
+    height: 36px;
+    margin: 0 0 20px 20px;
+    width: 93px;
+}
+
+.added-card {
+    scale: 1.04;
+}
+
+.added-card > button {
+    background-color: var(--secondary-card-color);
+}
