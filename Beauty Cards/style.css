@@ -1,0 +1,118 @@
+:root {
+    --main-color: #a0221d;
+    --secondary-color: #e67e21;
+    --white: #fff;
+    --cards-info-font: 600 16px/1.33 Sans-serif;
+    --card-border: 1px solid #8080802f;
+    --main-card-color: #fb1e1f;
+    --secondary-card-color: #168000;
+    --button-box-shadow: 1px 1px #72676756;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.header {
+    background: linear-gradient(to left, var(--main-color), var(--secondary-color));
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.user-name {
+    font: var(--cards-info-font);
+    margin-bottom: 4px;
+}
+
+.count-cards,
+.selected-colors {
+    font: var(--cards-info-font);
+    margin-right: 5px;
+}
+
+.cardsContainer {
+    /* display: grid; */
+    gap: 18px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); */
+    /* justify-content: stretch; */
+    margin: 18px;
+    margin-top: 111px;
+}
+
+.card {
+    border: var(--card-border);
+    display: flex;
+    flex: 0 0 calc(( 100% - (18px*4) ) / 5);
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    transition: .35s linear;
+}
+
+.color-image {
+    height: 450px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-left: 20px;
+}
+
+.card-title {
+    margin: 20px 0 10px 0;
+}
+
+.button {
+    background-color: var(--main-card-color);
+    border: none;
+    box-shadow: var(--button-box-shadow);
+    color: var(--white);
+    cursor: pointer;
+    height: 36px;
+    margin: 10px 0 20px 20px;
+    width: 93px;
+}
+
+.added-card {
+    scale: 1.04;
+}
+
+.added-card > button {
+    background-color: var(--secondary-card-color);
+}
+
+@media only screen and (max-width: 1636px) {
+    .card {
+        flex: 0 0 calc(( 100% - (18px*3) ) / 4);
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .card {
+        flex: 0 0 calc(( 100% - (18px*2) ) / 3);
+    }
+}
+
+@media only screen and (max-width: 690px){
+    .card {
+        flex: 0 0 calc(( 100% - 18px ) / 2);
+    }
+}
+
+@media only screen and (max-width: 532px){
+    .card {
+        flex: 0 0 100%;
+    }
+}
