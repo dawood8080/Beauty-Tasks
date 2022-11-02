@@ -1,0 +1,195 @@
+:root {
+    --current-hour-degree: 0deg;
+    --current-minute-degree: 0deg;
+    --current-second-degree: 30deg;
+    --hour-animation-duration: 21600s;
+    --minute-animation-duration: 6300s;
+    --second-animation-duration: 60s;
+
+    --clock-color: #8685841a;
+    --hour-rotation: 360deg;
+    --seconds-line-color: #ff0000;
+    --hour-line-color: #000;
+    --minute-line-color: #000;
+
+    --circle-border: 10px solid #f9f5f5fa;
+    --minute-border: 1px solid var(var(--minute-line-color));
+    --seconds-border: 1px solid #ff0000;
+
+    --start-angle: -90deg;
+    --end-angle: 269deg;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.clock-container {
+    background-color: var(--clock-color);
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas:
+        ". top ."
+        "left center right"
+        ". bottom .";
+    grid-template-columns: 50px 300px 50px;
+    grid-template-rows: 50px 300px 50px;
+    height: 400px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
+
+.clock-center {
+    align-self: center;
+    background-color: var(--seconds-line-color);
+    border-radius: 50%;
+    border: var(--circle-border);
+    grid-area: center;
+    height: 30px;
+    justify-self: center;
+    width: 30px;
+    z-index: 1;
+}
+
+.hour-line,
+.minute-line,
+.seconds-line {
+    align-self: center;
+    border-radius: 5px;
+    border: var(--minute-border);
+    height: 1px;
+    justify-self: center;
+    transform: translate(150px, 147.5px);
+    z-index: 0;
+}
+
+.hour-line-container,
+.minute-line-container,
+.second-line-container {
+    align-self: center;
+    grid-area: center;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.hour-line-container {
+    transform: rotate(var(--current-hour-degree));
+    -webkit-animation: rest-rotate-hour 216000s linear infinite,
+                        initial-rotate-hour var(--hour-animation-duration) linear 1;
+}
+
+.minute-line-container {
+    transform: rotate(var(--current-minute-degree));
+    -webkit-animation: rest-rotate-minute 3600s linear infinite,
+                        initial-rotate-minute var(--minute-animation-duration) linear 1;
+}
+
+.second-line-container {
+    transform: rotate(var(--current-second-degree));
+    -webkit-animation: rest-rotate-second 60s linear infinite,
+                        initial-rotate-second var(--second-animation-duration) linear 1;
+}
+
+.hour-line {
+    border: 3px solid;
+    width: 100px;
+}
+
+.minute-line {
+    border: 3px solid;
+    width: 120px;
+}
+
+.seconds-line {
+    border: var(--seconds-border);
+    width: 150px;
+}
+
+.nine {
+    align-self: center;
+    grid-area: left;
+    justify-self: flex-end;
+}
+
+.twelve {
+    align-self: flex-end;
+    grid-area: top;
+    justify-self: center;
+}
+
+.three {
+    align-self: center;
+    grid-area: right;
+    justify-self: flex-start;
+}
+
+.six {
+    align-self: flex-start;
+    grid-area: bottom;
+    justify-self: center;
+}
+
+@keyframes initial-rotate-hour {
+    from {
+        transform: rotate(var(--current-hour-degree));
+    }
+
+    to {
+        transform: rotate(var(--end-angle));
+    }
+}
+
+@keyframes rest-rotate-hour {
+    from {
+        transform: rotate(var(--start-angle));
+    }
+
+    to {
+        transform: rotate(var(--end-angle));
+    }
+}
+
+@keyframes initial-rotate-minute {
+    from {
+        transform: rotate(var(--current-minute-degree));
+    }
+
+    to {
+        transform: rotate(var(--end-angle));
+    }
+}
+
+@keyframes rest-rotate-minute {
+    from {
+        transform: rotate(var(--start-angle));
+    }
+
+    to {
+        transform: rotate(var(--end-angle));
+    }
+}
+
+@keyframes initial-rotate-second {
+    from {
+        transform: rotate(var(--current-second-degree));
+    }
+
+    to {
+        transform: rotate(var(--end-angle));
+    }
+}
+
+@keyframes rest-rotate-second {
+    from {
+        transform: rotate(var(--start-angle));
+    }
+
+    to {
+        transform: rotate(var(--end-angle));
+    }
+}
