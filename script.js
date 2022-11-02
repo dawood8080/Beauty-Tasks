@@ -61,9 +61,21 @@ class Seconds {
     }
 }
 
-class Clock {
+class CurrTime {
     constructor(){
         const timeNow = new Date();
+        this.hour = timeNow.getHours();
+        this.minute = timeNow.getMinutes();
+        this.second = timeNow.getSeconds();
+    }
+
+    get currTime(){
+        return { hour:this.hour, minute: this.minute, second: this.second };
+    }
+}
+
+class Clock {
+    constructor(){
 
         this.clock = document.createElement('div');
         this.clock.classList.add('clock-container');
@@ -83,13 +95,15 @@ class Clock {
             this.clock.appendChild(temp);
         })
 
-        const hour = new Hour(timeNow.getHours());
-        const minute = new Minute(timeNow.getMinutes());
-        const second = new Seconds(timeNow.getSeconds());
+        const timeNow = new CurrTime();
+
+        const hour = new Hour(timeNow.currTime.hour);
+        const minute = new Minute(timeNow.currTime.minute);
+        const second = new Seconds(timeNow.currTime.second);
 
         const currHour = hour.Hour;
         const currMinute = minute.Minute;
-        const currSecond= second.Second;
+        const currSecond = second.Second;
 
         this.clock.appendChild(hour.Container);
         this.clock.appendChild(minute.Container);
