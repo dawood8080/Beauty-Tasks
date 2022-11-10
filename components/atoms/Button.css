@@ -1,0 +1,9 @@
+.login-button,
+.signup-button{
+    background-color: var(--button-color);
+    border-radius: var(--border-radius);
+    font-size: var(--button-font-size);
+    height: 50px;
+    margin-top: 20px;
+    width: 100%;
+}

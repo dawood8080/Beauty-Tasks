@@ -1,31 +1,27 @@
-import { formTitle } from '../atoms/form-title.js'
-import { Button } from '../atoms/button.js';
-import { TextInfo } from '../molecules/text-info.js';
-import { RegisterIndicator } from '../molecules/register-indicator.js';
+import { Title } from '../atoms/Title.js'
+import { Button } from '../atoms/Button.js';
+import { TextInfo } from '../molecules/TextInfo.js';
+import { RegisterIndicator } from '../molecules/RegisterIndicator.js';
+import { userInputElements } from '../../constants/login-data.js'
 
-export class LoginContent{
+export class LoginContainer{
     constructor(){
         this.loginContainer = document.createElement('div');
         this.loginContainer.classList.add('login-container');
 
-        const title = new formTitle('Member Login').currTitle;
+        const title = new Title('Member Login').title;
         this.loginContainer.appendChild(title);
 
         const userInputContainer = document.createElement('div');
         userInputContainer.classList.add('user-input-container');
-
-        const userInputElements = [
-            {iconType: 'fa-solid fa-user', type: 'email', placeHolder: 'Your email', name: 'email'},
-            {iconType: 'fa-sharp fa-solid fa-key', type: 'password', placeHolder: 'Your password', name: 'password'},
-        ];
 
         userInputElements.forEach(input => {
             const textElement = new TextInfo(input.type, input.placeHolder, input.name, input.iconType).currTextInfo;
             userInputContainer.appendChild(textElement);
         });
 
-        const loginButton = new Button('Sign in', 'submit', 'login').currButton;
-        const registerText = new RegisterIndicator('Don\'t have account? ').registerTextContainer;
+        const loginButton = new Button('Sign in', 'submit', 'login').button;
+        const registerText = new RegisterIndicator('Don\'t have account? ').registerIndicator;
 
         userInputContainer.appendChild(loginButton);
         userInputContainer.appendChild(registerText);
