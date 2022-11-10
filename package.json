@@ -1,0 +1,10 @@
+{
+  "name": "BeautyForm",
+  "version": "1.0.0",
+  "description": "Implementation of beauty form task",
+  "main": "index.js",
+  "repository": "git@github.com:dawood8080/Beauty-Tasks.git",
+  "author": "dawood8080 <dawood_khader@hotmail.com>",
+  "license": "MIT",
+  "type": "module"
+}
