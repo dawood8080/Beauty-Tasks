@@ -1,0 +1,13 @@
+.register-container .form-title{
+    margin: 35px auto;
+}
+
+.login-container .form-title{
+    margin: 80px auto;
+}
+
+@media screen and (max-device-width: 1200px){
+    .login-container .form-title{
+        margin: 40px auto;
+    }
+}
