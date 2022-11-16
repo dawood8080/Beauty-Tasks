@@ -24,6 +24,13 @@
         "prefer-arrow",
         "sort-destructure-keys"
     ],
+    "settings": {
+        "import/resolver": {
+          "webpack": {
+            "config": "webpack.config.js"
+          }
+        }
+    },
     "rules": {
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": "error",
