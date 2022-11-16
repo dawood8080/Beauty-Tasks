@@ -1,0 +1,5 @@
+.validation-text{
+    font: var(--error-text);
+    padding-left: 20px;
+    color: var(--incorrect-color)
+}
