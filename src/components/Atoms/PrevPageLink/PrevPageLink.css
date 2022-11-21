@@ -1,0 +1,11 @@
+.login-link{
+    cursor: pointer;
+    margin: 20px auto;
+    text-decoration-line: underline;
+}
+
+.signup-link{
+    cursor: pointer;
+    margin: 20px auto;
+    text-decoration-line: underline;
+}
