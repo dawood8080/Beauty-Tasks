@@ -1,19 +1,28 @@
-import { LocalStorage } from "../Hooks/LocalStorage"
+import { validationError } from "@Constants/displayed-text"
+import { LocalStorage } from "@Utilities/LocalStorage"
 
-export const checkLoginInput = () => {
-    const currEmail = document.querySelector('input[name=email2]') as HTMLInputElement
-    const currPass = document.querySelector('input[name=password]') as HTMLInputElement
-    const currTextInfo = currPass?.parentNode as HTMLDivElement
+interface checkLogInType {
+    message: string;
+    valid: boolean;
+}
 
-    const currLocalStorage = new LocalStorage()
-    const userEmail = currLocalStorage.get(currEmail.value)
-    const userInfo = JSON.parse(userEmail??'[]')
-    if(userEmail && userInfo[0].pass === currPass.value){
-        currTextInfo?.classList.remove('incorrect')
-        currTextInfo?.classList.add('welcome')
+export const checkLoginInput = (
+    userEmail: string,
+    pass: string
+): checkLogInType => {
+    let message = ""
+    let valid = false
+    if (!userEmail || !pass) {
+        message = validationError.emptyLogin
     } else {
-        currTextInfo?.classList.remove('incorrect')
-        currTextInfo?.classList.remove('welcome')
-        currTextInfo?.classList.add('incorrect')
+        const localStorage = new LocalStorage()
+        const userInfo = JSON.parse(localStorage.get(userEmail) ?? "{}")
+        if (userInfo.e === userEmail && userInfo.pass === pass) {
+            message = validationError.welcome
+            valid = true
+        } else {
+            message = validationError.incorrect
+        }
     }
+    return { message, valid }
 }
