@@ -1,9 +1,11 @@
 import { validationError } from "@Constants/displayed-text"
-import * as regex from "@Utilities/Regex"
+import * as regex from "@Constants/Regex"
+import { checkLoginInput } from "./loginUtils";
 
 interface defaultValuesType {
     [key: string]: string;
 }
+
 interface returnedValue {
     errors: defaultValuesType;
     valid: boolean;
@@ -18,11 +20,7 @@ const validateInput = (
         return "This field is required!"
     }
 
-    if (name === "firstName" && singleInput.match(regex.hasNumbers)) {
-        return validationError.name
-    }
-    // merge them
-    if (name === "lastName" && singleInput.match(regex.hasNumbers)) {
+    if ((name === "firstName" || name === "lastName") && singleInput.match(regex.hasNumbers)) {
         return validationError.name
     }
 
@@ -31,38 +29,53 @@ const validateInput = (
     }
 
     let passwordError = ""
+
     if (name === "password") {
         if (singleInput.length < 8) {
-            passwordError += validationError.shortPass + " \r"
+            passwordError += validationError.shortPass + " \n "
         }
+
         if (!singleInput.match(regex.hasNumbers)) {
-            passwordError += validationError.noNumbers + " \r"
+            passwordError += validationError.noNumbers + " \n "
         }
+
         if (
             !singleInput.match(regex.hasSpecialChar) &&
             !singleInput.match(regex.hasCapitalLetter)
         ) {
             passwordError += validationError.noCapitalOrSpecChar
         }
+
         return passwordError
     }
 
     if (name === "password2" && singleInput !== confirmPass) {
         return validationError.notMatching
     }
+
     return ""
 }
 
-const checkFilledInput = (values: defaultValuesType): returnedValue => {
+const checkFilledInput = (values: defaultValuesType, formType: string): returnedValue => {
     const errors = {} as defaultValuesType
-    let valid = true;
-    (Object.keys(values) as (keyof defaultValuesType)[]).forEach((key) => {
-        const inputElem = values[key]
-        const message = validateInput(inputElem, key, values.password2)
-        errors[key] = message || ""
-        valid = !message
-    })
-    return { errors, valid }
+    if(formType === 'loginForm'){
+        let { message, valid } = checkLoginInput(values.loginEmail, values.loginPass)
+        errors.loginPass = message
+        return { errors, valid }
+    } else {
+        let valid = true;
+        (Object.keys(values) as (keyof defaultValuesType)[]).forEach((key) => {
+            const inputElem = values[key]
+            const message = validateInput(inputElem, key, values.password2)
+            errors[key] = message || ""
+            if(key === 'loginEmail' || key === 'loginPass'){
+                return
+            } else {
+                valid = !message
+            }
+        })
+        return { errors, valid }
+    }
 }
 
 export { checkFilledInput, validateInput }

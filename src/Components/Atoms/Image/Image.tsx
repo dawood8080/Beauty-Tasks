@@ -1,9 +1,1 @@
-import React from "react"
-
-export class Image extends React.Component{
-    render(): React.ReactNode {
-        return (
-            <div className="main-image"></div>
-        )
-    }
-}
+export const Image = () => (<div className="main-image" data-testid='main-image'></div>)

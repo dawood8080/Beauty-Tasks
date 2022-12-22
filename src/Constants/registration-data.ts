@@ -1,18 +1,22 @@
 import { icons, placeHolders } from "@Constants/displayed-text"
-import { mainInputProperties } from "@Interfaces/register-data-interface"
+
+export interface mainInputProperties {
+    label: string;
+    name: string;
+    placeHolder: string;
+    type?: string;
+}
 
 export const userInputElements: mainInputProperties[] = [
     {
         label: icons.user,
         name: "firstName",
         placeHolder: placeHolders.firstName,
-        type: "text",
     },
     {
         label: icons.user,
         name: "lastName",
         placeHolder: placeHolders.lastName,
-        type: "text",
     },
     {
         label: icons.email,

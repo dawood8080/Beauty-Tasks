@@ -1,31 +1,37 @@
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import { LocalStorage } from "@Utilities/LocalStorage"
 import { validateInput } from "@Utilities/validate-input"
+import { formType } from "@Strings/enums";
 
-interface objectStringKey {
+// CSS Modules
+interface InputDataInt {
     [key: string]: string;
 }
+
 interface returnedValue {
     errors: { [key: string]: string };
     valid: boolean;
 }
 
 export const useForm = (
-    validate: (passedValues: objectStringKey) => returnedValue,
-    switchContent: (value: string) => void
+    validate: (passedValues: InputDataInt, formType: string) => returnedValue,
+    form: string,
+    switchContent?: (value: formType) => void
 ) => {
-    const [values, setValues] = useState<objectStringKey>({
+    const [values, setValues] = useState<InputDataInt>({
         email: "",
         firstName: "",
         lastName: "",
         password: "",
         password2: "",
+        loginPass: "",
+        loginEmail: ""
     })
-    const [errors, setErrors] = useState<objectStringKey>({})
+    const [errors, setErrors] = useState<InputDataInt>({})
 
     const localStorage = new LocalStorage()
 
-    const handleChange = (event: InputEvent) => {
+    const handleChange = useCallback((event: InputEvent) => {
         event.preventDefault()
         const { name, value } = event.target as HTMLInputElement
 
@@ -37,20 +43,17 @@ export const useForm = (
             ...errors,
             [name]: validateInput(value, name, values.password),
         })
-    }
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    }, [values, errors])
+    const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-
-        const { errors, valid } = validate(values)
+        let { errors, valid } = validate(values, form)
         setErrors(errors)
-        if (valid) {
+        if(values.firstName && valid){
             const userInfo = { e: values.email, pass: values.password }
             localStorage.addUser(values.email, userInfo)
-            switchContent("login")
+            switchContent!(formType.login)
         }
-    }
-
+    }, [errors])
     return {
         errors,
         handleChange,

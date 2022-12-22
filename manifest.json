@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "name": "Beauty Form - React",
+    "short_name": "BeautyForm",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#52b2ad",
+    "description": "A login and sign-up form that's created with react and typescript",
+    "icons":[
+        {
+            "src": "./src/Assets/Icons/form.svg",
+            "sizes": "150x150",
+            "type": "image/icon type"
+        }
+    ]
+}

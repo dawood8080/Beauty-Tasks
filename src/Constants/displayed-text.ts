@@ -6,6 +6,7 @@ const formTitle = {
 const backLinkText = {
     login: "Back to Login",
     signup: "Register Here!",
+    registerIndicator: "Don't have an account? "
 }
 
 const placeHolders = {

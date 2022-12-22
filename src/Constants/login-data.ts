@@ -1,16 +1,22 @@
 import { icons, placeHolders } from "@Constants/displayed-text"
-import { inputLoginProperties } from "@Interfaces/login-data-interface"
+
+export interface inputLoginProperties {
+    iconType: string;
+    name: string;
+    placeHolder: string;
+    type: string;
+}
 
 export const userInputElements: inputLoginProperties[] = [
     {
         iconType: icons.user,
-        name: "email",
+        name: "loginEmail",
         placeHolder: placeHolders.email,
         type: "email",
     },
     {
         iconType: icons.password,
-        name: "password",
+        name: "loginPass",
         placeHolder: placeHolders.password,
         type: "password",
     },

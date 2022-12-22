@@ -1,5 +1,5 @@
 import { MainPage } from '@Components/Pages/main-page/MainPage'
-// ESLINT Rule for return with no props
+import "./Components/Pages/main-page/main-page.css"
 const App = () => (<MainPage />)
 
 export default App

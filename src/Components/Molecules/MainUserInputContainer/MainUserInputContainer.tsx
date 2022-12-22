@@ -1,22 +1,35 @@
 import { ValidationText } from "@Components/Atoms/ValidationText/ValidationText"
 import { TextInfo } from "@Components/Molecules/TextInfo/TextInfo"
-import { mainInputProps } from "@Interfaces/molecule-interfaces"
+import "./MainUserInputContainer.css"
+import "@Components/Pages/main-page/variables.css"
+import "../TextInfo/TextInfo.css"
+import "@Components/Atoms/ValidationText/ValidationText.css"
 
-export const MainUserInputContainer = (props: mainInputProps) => {
-    return (
-        <div className="user-input-error-container">
-            <TextInfo
-                type={props.type}
-                placeHolder={props.placeHolder}
-                name={props.name}
-                labelName={props.labelName}
-                actionFunction={props.actionFunction}
-                value={props.value}
-            />
-            <ValidationText
-                text={props.error}
-                messageColor={props.messageColor}
-            />
-        </div>
-    )
+interface mainInputProps {
+    actionFunction: (a: InputEvent) => void;
+    error?: string;
+    labelName: string;
+    name: string;
+    placeHolder: string;
+    type?: string;
+    value?: string;
+    autoComplete: string
 }
+
+// destructure props
+export const MainUserInputContainer = (props: mainInputProps) => (
+    <div className="user-input-error-container" data-testid='input-container'>
+        <TextInfo
+            actionFunction={props.actionFunction}
+            labelName={props.labelName}
+            name={props.name}
+            placeHolder={props.placeHolder}
+            type={props.type || 'text'}
+            value={props.value}
+            autoComplete={props.autoComplete}
+        />
+        <ValidationText
+            text={props.error}
+        />
+    </div>
+)

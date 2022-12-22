@@ -1,8 +1,14 @@
-import { buttonProps } from "@Interfaces/atom-interfaces"
+import { buttonType } from "@Strings/enums";
+import "./Button.css"
+import "../../Pages/main-page/variables.css"
 
-export const Button = (props: buttonProps) => {
-    return (// send the type of buttons in props
-        <button className={`${props.type}-button`} type="submit">
+interface ButtonProps {
+    text: buttonType;
+}
+
+export const Button = (props: ButtonProps) => {
+    return (
+        <button className='form-button' type="submit">
             {props.text}
         </button>
     )

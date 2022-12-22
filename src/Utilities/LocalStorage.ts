@@ -19,9 +19,8 @@ export class LocalStorage<T extends string> {
         this._storage.removeItem(key)
     }
 
-    // localStorage.clear
-    removeItems(keys: T[]): void {
-        keys.forEach((key) => this.removeItem(key))
+    removeItems(): void {
+        this._storage.clear()
     }
 
     addUser(email: T, info: { e: T; pass: T }): void {

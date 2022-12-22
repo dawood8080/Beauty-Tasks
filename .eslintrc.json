@@ -9,7 +9,18 @@
         "react-app"
     ],
     "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"],
+            "extends": [
+              "plugin:@typescript-eslint/recommended",
+              "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            ],
+            "parserOptions": {
+              "project": ["./tsconfig.json"]
+            }
+          }
     ],
+    "ignorePatterns": ["./vite.config.ts"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -23,7 +34,9 @@
         "import",
         "simple-import-sort",
         "prefer-arrow",
-        "sort-destructure-keys"
+        "sort-destructure-keys",
+        "jsx-expressions",
+        "@babel/preset-react"
     ],
     "settings": {
         "import/resolver": {
@@ -52,6 +65,15 @@
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/no-var-requires": "error",
+        "@typescript-eslint/padding-line-between-statements": [
+            "error",
+            { "blankLine": "always", "prev": "*", "next": "block-like" },
+            { "blankLine": "always", "prev": "*", "next": "return" },
+            { "blankLine": "always", "prev": "*", "next": ["interface", "type"] },
+            { "blankLine": "always", "prev": "block-like", "next": "*" },
+            { "blankLine": "always", "prev": ["case", "default"], "next": "*" },
+            { "blankLine": "always", "prev": "iife", "next": "*" }
+        ],
         "@typescript-eslint/prefer-for-of": "error",
         "@typescript-eslint/prefer-function-type": "warn",
         "@typescript-eslint/prefer-namespace-keyword": "error",
@@ -76,10 +98,15 @@
         "import-helpers/order-imports": [
             "error",
             {
-                "alphabetize": {
-                    "ignoreCase": false,
-                    "order": "asc"
-                }
+                "alphabetize": { "order": "asc", "ignoreCase": false },
+                "groups": [
+                    "module",
+                    "/^(api|assets|components|containers|constant|fragments|hooks|mocks|pages|settings|strings|styles|test|utils)/",
+                    "/^styles/",
+                    "/^public/",
+                    ["sibling", "index"]
+                ],
+                "newlinesBetween": "always"
             }
         ],
         "import/extensions": "off",
@@ -145,6 +172,7 @@
             "error",
             "never"
         ],
+        "padding-line-between-statements": "off",
         "prefer-arrow/prefer-arrow-functions": "warn",
         "prefer-const": "error",
         "prefer-destructuring": [
@@ -154,6 +182,21 @@
                 "object": true
             }
         ],
+        "react-hooks/exhaustive-deps": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react/jsx-boolean-value": "off",
+        "react/jsx-closing-tag-location": "off",
+        "react/jsx-curly-brace-presence": ["error", "never"],
+        "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+        "react/jsx-key": "warn",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-sort-props": "error",
+        "react/jsx-tag-spacing": "off",
+        "react/no-children-prop": "error",
+        "react/no-unknown-property": ["error", { "ignore": ["object"] }],
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/self-closing-comp": "error",
         "radix": "error",
         "sort-destructure-keys/sort-destructure-keys": 2,
         "sort-export-all/sort-export-all": [
@@ -163,6 +206,7 @@
                 "caseSensitive": false
             }
         ],
+        "sort-imports": ["error", { "ignoreDeclarationSort": true }],
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": [
             "warn",
@@ -179,7 +223,8 @@
         "import/first": "error",
         "import/newline-after-import": "error",
         "import/no-duplicates": "error",
-        // "jsx-expressions/strict-logical-expressions": "error",
+        "curly": "error",
+        "jsx-expressions/strict-logical-expressions": "error",
         "linebreak-style": [
             "error",
             "unix"

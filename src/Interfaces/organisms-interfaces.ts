@@ -1,7 +1,8 @@
 interface loginContainerProps {
     switchContent: (value: string) => void;
 }
-interface objectStringKey {
+
+interface InputDataInt {
     [key: string]: string;
 }
 
@@ -9,4 +10,4 @@ interface registerContainerProps {
     switchContent: (value: string) => void;
 }
 
-export type { loginContainerProps, objectStringKey, registerContainerProps }
+export type { loginContainerProps, InputDataInt, registerContainerProps }

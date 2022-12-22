@@ -1,17 +1,22 @@
 import { PrevPageLink } from "@Components/Atoms/PrevPageLink/PrevPageLink"
 import { RegisterText } from "@Components/Atoms/RegisterText/RegisterText"
-import { prevLink } from "@Enums/enums"
-import { registerIndicatorProps } from "@Interfaces/molecule-interfaces"
+import { formType, prevLink } from "@Strings/enums"
+
+interface registerIndicatorProps {
+    text: string;
+    prevForm: formType;
+    switchForm: (value: formType) => void;
+}
 
 export const RegisterIndicator = (props: registerIndicatorProps) => {
     return (
-        <div className="register-text-container">
+        <div className="register-text-container" data-testid='register-indicator'>
             <RegisterText text={props.text} />
             <PrevPageLink
-                type="login"
-                text={prevLink.SignUp}
+                prevForm={props.prevForm}
                 switchForm={props.switchForm}
-                prevForm="signUp"
+                text={prevLink.SignUp}
+                type="login"
             />
         </div>
     )

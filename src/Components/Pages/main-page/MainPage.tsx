@@ -1,6 +1,3 @@
-import { SignInUpTemplate } from "@Components/Templates/SigninUpTemplate/SigninUpTemplate"
+import { SignInUpTemplate } from "@Components/Templates/SignInUpTemplate/SignInUpTemplate"
 
-export const MainPage = (): JSX.Element => {
-    return <SignInUpTemplate />
-}
-// ESLINT Rule for return with no props
+export const MainPage = (): JSX.Element => (<SignInUpTemplate />)

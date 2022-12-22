@@ -23,7 +23,7 @@
       "@Hooks/*" :["./src/Hooks/*"],
       "@Interfaces/*" :["./src/Interfaces/*"],
       "@Utilities/*" :["./src/Utilities/*"],
-      "@Enums/*" :["./src/Enums/*"]
+      "@Strings/*" :["./src/Strings/*"],
     }
   },
   "include": ["./src"],
